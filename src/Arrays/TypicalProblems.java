@@ -1,0 +1,69 @@
+package Arrays;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class TypicalProblems {
+
+
+    //1431. Kids With the Greatest Number of Candies
+    public static List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+        int maxCandies = 0;
+        Boolean[] result = new Boolean[candies.length];
+        for(int i = 0; i < candies.length; i++)
+            maxCandies = Math.max(candies[i], maxCandies);
+
+        for(int i = 0; i < candies.length; i++)
+            result[i] = candies[i] + extraCandies >= maxCandies;
+
+        return Arrays.asList(result);
+    }
+
+    //1470. Shuffle the Array
+    public static int[] shuffle(int[] nums, int n) {
+        int[] result = new int[nums.length];
+        int index1 = 0;
+        int index2 = n;
+        int currentIndex = 0;
+        while(index2 < nums.length)
+        {
+            result[currentIndex++] = nums[index1++];
+            result[currentIndex++] = nums[index2++];
+        }
+        return result;
+    }
+
+    //1071. Greatest Common Divisor of Strings
+    public String gcdOfStrings(String str1, String str2) {
+        if(!(str1 + str2).equals(str2+str1))
+            return "";
+
+        int gcd = gcd(str1.length(), str2.length());
+        return str1.substring(0,gcd);
+    }
+
+    private int gcd(int len1, int len2)
+    {
+        while(len2 != 0)
+        {
+            int temp = len1 % len2;
+            len1 = len2;
+            len2 = temp;
+        }
+        return len1;
+    }
+
+
+    public int maximumWealth(int[][] accounts) {
+        int result = Integer.MIN_VALUE;
+        for(int i = 0; i < accounts.length; i++)
+        {
+            int currentAccountSum = 0;
+            for(int j = 0; j < accounts[i].length; j++)
+                currentAccountSum+=accounts[i][j];
+
+            result = Math.max(currentAccountSum, result);
+        }
+        return result == Integer.MIN_VALUE ? 0 : result;
+    }
+}
