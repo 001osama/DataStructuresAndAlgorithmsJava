@@ -35,5 +35,38 @@ public class GreedyProblems {
         return playersIndex;
     }
 
+    //860. Lemonade Change
+    public static boolean lemonadeChange(int[] bills) {
+        int billOfFive = 0;
+        int billOfTen = 0;
+        for(int bill:bills) {
+
+            if (bill == 5){
+                billOfFive++;
+            }
+            else if(bill == 10)
+            {
+                if(billOfFive<=0) return false;
+                billOfFive--;
+                billOfTen++;
+            }
+            else
+            {
+                if( billOfTen>0 && billOfFive>0)
+                {
+                    billOfFive--;
+                    billOfTen--;
+                }
+                else if(billOfFive>2)
+                {
+                    billOfFive-=3;
+                }
+                else return false;
+            }
+
+        }
+        return true;
+    }
+
 
 }

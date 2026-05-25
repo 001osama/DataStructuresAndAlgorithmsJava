@@ -1,3 +1,4 @@
+import java.time.Clock;
 import java.util.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -6,12 +7,28 @@ public class Main {
     public static void main(String[] args) {
         System.out.print("Program working");
 
-//        var result = increasingTriplet(new int []{1,2,3,4,5});
-//        var resull2 = increasingTriplet(new int []{5,4,3,2,1});
-//        var resull3 = increasingTriplet(new int []{2,1,5,0,4,6});
-
+        //var result = lemonadeChange(new int []{5,5,5,10,20});
+        //var resull2 = lemonadeChange(new int []{5,5,10,10,20});
+        //var resull3 = lemonadeChange(new int []{5,5,10,20,5,5,5,5,5,5,5,5,5,10,5,5,20,5,20,5});
 
     }
+
+
+//    public int search(int[] nums, int target) {
+//
+//    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -86,30 +103,8 @@ public class Main {
     }
 
 
-    //217. Contains Duplicate
-    public boolean containsDuplicate(int[] nums) {
-        HashSet<Integer> repo = new HashSet<Integer>();
-        for(int i = 0; i < nums.length; i++)
-        {
-            if(repo.contains(nums[i]))
-                return true;
-            repo.add(nums[i]);
-        }
-        return false;
-    }
 
-    //1. Two Sum
-    public int[] twoSum(int[] nums, int target) {
-        HashMap<Integer, Integer> repo = new HashMap<>();
-        for(int i = 0; i < nums.length; i++)
-        {
-           int remain = target - nums[i];
-           if(repo.containsKey(remain))
-               return new int[]{nums[i], repo.get(remain)};
-           repo.put(nums[i],i);
-        }
-        return new int[2];
-    }
+
 
     //1995. Count Special Quadruplets
 //    public int countQuadruplets(int[] nums) {
