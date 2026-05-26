@@ -1,5 +1,6 @@
 package String;
 
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class FrequencyProblems {
@@ -61,5 +62,44 @@ public class FrequencyProblems {
             repo.add(nums[i]);
         }
         return false;
+    }
+
+
+    //383. Ransom Note
+    public static boolean canConstruct(String ransomNote, String magazine) {
+        if(ransomNote.length() > magazine.length()) return false;
+
+        int[] frequency = new int[26];
+        var characterArray = magazine.toCharArray();
+        for(char character:characterArray)
+            frequency[character-'a']++;
+
+        characterArray = ransomNote.toCharArray();
+        for(char character:characterArray)
+        {
+            if(frequency[character-'a'] == 0) return false;
+            frequency[character-'a']--;
+        }
+        return true;
+    }
+
+
+    //1512. Number of Good Pairs
+    public static int numIdenticalPairs(int[] nums) {
+        HashMap<Integer,Integer> seen = new HashMap<Integer, Integer>();
+        int result = 0;
+        for(int i = 0; i < nums.length; i++)
+        {
+            if(seen.containsKey(nums[i]))
+            {
+                int exists = seen.get(nums[i]);
+                result+=exists;
+                seen.put(nums[i], exists+1);
+            }
+
+            else seen.put(nums[i],1);
+
+        }
+        return result;
     }
 }

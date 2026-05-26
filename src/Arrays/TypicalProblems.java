@@ -66,4 +66,21 @@ public class TypicalProblems {
         }
         return result == Integer.MIN_VALUE ? 0 : result;
     }
+
+    //169. Majority Element
+    public int majorityElement(int[] nums) {
+        int candidate = 0;
+        int seen = 0;
+        for(int num:nums)
+        {
+            if(seen==0)
+                candidate = num;
+
+            if(candidate == num)
+                seen++;
+            else
+                seen--;
+        }
+        return candidate;
+    }
 }

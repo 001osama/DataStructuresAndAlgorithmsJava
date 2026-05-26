@@ -9,13 +9,36 @@ public class Main {
 
         //var result = lemonadeChange(new int []{5,5,5,10,20});
         //var resull2 = lemonadeChange(new int []{5,5,10,10,20});
-        //var resull3 = lemonadeChange(new int []{5,5,10,20,5,5,5,5,5,5,5,5,5,10,5,5,20,5,20,5});
+        //sortColors(new int []{2,0,2,1,1,0});
+//        merge(new int []{1,2,3,0,0,0},3,new int []{2,5,6},3);
+//        merge(new int []{4,5,6,0,0,0},3,new int []{1,2,3},3);
 
     }
 
 
+
+
+
+
+
+    //704. Binary Search
 //    public int search(int[] nums, int target) {
 //
+//    }
+
+
+
+
+
+//  704. Binary Search
+//    public int search(int[] nums, int target) {
+//
+//    }
+//
+//    public int search(int nums[], int target, int pivotIndex)
+//    {
+//        if(target>nums[pivotIndex])
+//            search(nums, target,pivot)
 //    }
 
 
