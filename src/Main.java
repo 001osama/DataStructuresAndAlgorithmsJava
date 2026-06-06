@@ -1,4 +1,9 @@
 import HackerRankCodeRunner.Problems.ActiveTraders.ActiveTradersSolution;
+import HackerRankCodeRunner.Problems.LongestSubarray.LongestSubarraySolution;
+import HackerRankCodeRunner.Problems.NearlySimilarRectangles.NearlySimilarRectanglesSolution;
+import HackerRankCodeRunner.Problems.RoadRepair.RoadRepairSolution;
+import HackerRankCodeRunner.Problems.StringAnagram.StringAnagramSolution;
+import HackerRankCodeRunner.Problems.UnexpectedDemand.UnexpectedDemandSolution;
 import HackerRankCodeRunner.TestCaseRunner;
 
 import java.io.IOException;
@@ -7,20 +12,38 @@ import java.io.IOException;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        System.out.print("Program working");
+        System.out.print("Program working \n");
 
+//        int result = search(new int[]{-1,0,3,5,9,12}, 9);
         try
         {
-            new TestCaseRunner(new ActiveTradersSolution()).runAll();
-        } catch (IOException e) {
+            new TestCaseRunner(new LongestSubarraySolution()).runAll();
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         System.out.print("Program ended");
-        //var result = lemonadeChange(new int []{5,5,5,10,20});
-        //var resull2 = reverseWords("the sky is blue");
-        //sortColors(new int []{2,0,2,1,1,0});
     }
+
+    //704. Binary Search
+    public static int search(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+
+        while(left<=right)
+        {
+            int middle = (right+left)/2;
+            if(nums[middle] == target)
+                return middle;
+            else if (nums[middle] > target)
+                right = middle - 1;
+            else
+                left = middle + 1;
+        }
+        return -1;
+    }
+
+
 
 
 

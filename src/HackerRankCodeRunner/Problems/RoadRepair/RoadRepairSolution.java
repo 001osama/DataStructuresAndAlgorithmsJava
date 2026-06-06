@@ -4,6 +4,7 @@ package HackerRankCodeRunner.Problems.RoadRepair;
 import HackerRankCodeRunner.Problems.HackerRankSolution;
 
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class RoadRepairSolution extends HackerRankSolution {
@@ -20,13 +21,18 @@ public class RoadRepairSolution extends HackerRankSolution {
     }
 
     private long getMinCost(int[] crewId, int[] jobId) {
-        // your logic here
-        return 0;
+        Arrays.sort(crewId);
+        Arrays.sort(jobId);
+        int totalCost = 0;
+        for(int i = 0; i < crewId.length; i++)
+            totalCost += Math.abs(crewId[i] - jobId[i]);
+
+        return totalCost;
     }
 
 
     @Override
     public String getTestCasesDirectoryPath() {
-        return "src/HackerRankCodeRunner/Problems/RoadRepairSolution/TestCases";
+        return "src/HackerRankCodeRunner/Problems/RoadRepair/TestCases";
     }
 }

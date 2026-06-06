@@ -35,14 +35,30 @@ public class TestCaseRunner {
     public void runAll() throws IOException {
         int passed = 0, failed = 0, total = 0;
 
-        for (int i = 1; i <= 9; i++) {
+        int testCount;
+        try (Stream<Path> files = Files.list(Paths.get(inputDir))) {
+            testCount = (int) files
+                    .filter(p -> p.getFileName().toString().matches("input\\d+\\.txt"))
+                    .count();
+        } catch (IOException e) {
+            System.out.println("Could not read directory: " + e.getMessage());
+            return;
+        }
+
+
+        for (int i = 0; i < testCount; i++) {
             String tag = String.format("%03d", i);
             Path inputFile  = Paths.get(inputDir,  "input"  + tag + ".txt");
             Path outputFile = Paths.get(outputDir, "output" + tag + ".txt");
-            System.out.println("Input File Path: "+inputFile );
-            System.out.println("Output File Path: "+outputFile );
 
-            if (!Files.exists(inputFile)) continue;
+
+            if (!Files.exists(inputFile))
+            {
+                System.out.println("Unable to find file");
+                System.out.println("Input File Path: "+inputFile );
+                System.out.println("Output File Path: "+outputFile );
+                continue;
+            }
             total++;
 
             String       rawInput = Files.readString(inputFile);
@@ -86,7 +102,7 @@ public class TestCaseRunner {
         }
 
         System.out.println();
-        System.out.printf("Results: %d/%d passed", passed, total);
+        System.out.printf("Results: %d/%d passed \n", passed, total);
         if (failed > 0) System.out.printf(", %d failed", failed);
         System.out.println();
     }
