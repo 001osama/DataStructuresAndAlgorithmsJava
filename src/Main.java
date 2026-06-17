@@ -7,6 +7,7 @@ import HackerRankCodeRunner.Problems.UnexpectedDemand.UnexpectedDemandSolution;
 import HackerRankCodeRunner.TestCaseRunner;
 
 import java.io.IOException;
+import java.util.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -14,7 +15,8 @@ public class Main {
     public static void main(String[] args) {
         System.out.print("Program working \n");
 
-//        int result = search(new int[]{-1,0,3,5,9,12}, 9);
+//        int result = findMaxConsecutiveOnes(new int[]{1,1,0,1,1,1});
+//        int result2 = findMaxConsecutiveOnes(new int[]{1,0,1,1,0,1});
         try
         {
             new TestCaseRunner(new LongestSubarraySolution()).runAll();
@@ -22,7 +24,79 @@ public class Main {
         catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.print("Program ended");
+//        System.out.print("Program ended with result: " + result);
+    }
+
+//    public static int findMaxConsecutiveOnes(int[] nums) {
+//        int maxOccurences = 0;
+//        int currentOccurences = 0;
+//        for(int num:nums)
+//        {
+//            if(num == 1)
+//            {
+//                currentOccurences++;
+//            }
+//            else
+//            {
+//                maxOccurences = Math.max(currentOccurences, maxOccurences);
+//                currentOccurences = 0;
+//            }
+//        }
+//        maxOccurences = Math.max(currentOccurences, maxOccurences);
+//        return maxOccurences;
+//    }
+
+    ////    arr=[0,1,2,1,0,1,2,3];
+    private static int longestSubarray(int[] arr) {
+        int maxSubArraySize = 0;
+        int left = 0;
+        int right = 0;
+        Map<Integer, Integer> seen = new HashMap<>();
+
+        while(left <= right && right < arr.length)
+        {
+            int noOfElementsSeen = seen.size();
+            boolean isElementExists = seen.containsKey(arr[right]);
+            if(isElementExists)
+            {
+                right++;
+            }
+            else if(noOfElementsSeen == 0)
+            {
+                seen.put(arr[right],right);
+                right++;
+            }
+            else if(noOfElementsSeen == 2)
+            {
+                maxSubArraySize = Math.max(maxSubArraySize, right-left);
+
+                int minElement = Collections.min(seen.keySet());
+                left = seen.get(minElement) + 1;
+                seen.remove(minElement);
+
+                seen.put(arr[right], right);
+                right++;
+            }
+            else
+            {
+                int seenElement = seen.keySet().iterator().next();
+                if( Math.abs(seenElement - arr[right]) <= 1 )
+                {
+                    seen.put(arr[right], right);
+                    right++;
+                }
+                else
+                {
+                    maxSubArraySize = Math.max(maxSubArraySize, right-left);
+                    seen = new HashMap<>();
+                    seen.put(arr[right], right);
+                    left = right;
+                    right++;
+                }
+            }
+        }
+        maxSubArraySize = Math.max(maxSubArraySize, right-left);
+        return maxSubArraySize;
     }
 
     //704. Binary Search
