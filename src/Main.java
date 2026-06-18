@@ -4,6 +4,7 @@ import HackerRankCodeRunner.Problems.NearlySimilarRectangles.NearlySimilarRectan
 import HackerRankCodeRunner.Problems.RoadRepair.RoadRepairSolution;
 import HackerRankCodeRunner.Problems.StringAnagram.StringAnagramSolution;
 import HackerRankCodeRunner.Problems.UnexpectedDemand.UnexpectedDemandSolution;
+import HackerRankCodeRunner.Problems.VowelSubstring.VowelSubstringSolution;
 import HackerRankCodeRunner.TestCaseRunner;
 
 import java.io.IOException;
@@ -19,7 +20,7 @@ public class Main {
 //        int result2 = findMaxConsecutiveOnes(new int[]{1,0,1,1,0,1});
         try
         {
-            new TestCaseRunner(new LongestSubarraySolution()).runAll();
+            new TestCaseRunner(new VowelSubstringSolution()).runAll();
         }
         catch (IOException e) {
             throw new RuntimeException(e);
