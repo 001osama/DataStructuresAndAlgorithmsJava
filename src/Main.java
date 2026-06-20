@@ -18,17 +18,21 @@ public class Main {
     public static void main(String[] args) {
         System.out.print("Program working \n");
 
-//        int result = findMaxConsecutiveOnes(new int[]{1,1,0,1,1,1});
-//        int result2 = findMaxConsecutiveOnes(new int[]{1,0,1,1,0,1});
-        try
-        {
-            new TestCaseRunner(new PasswordDecryptionSolution()).runAll();
-        }
-        catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-//        System.out.print("Program ended with result: " + result);
+
+        int result3 = maxOperations(new int[]{2,5,4,4,1,3,4,4,1,4,4,1,2,1,2,2,3,2,4,2},3);
+        int result = maxOperations(new int[]{1,2,3,4},5);
+        int result2 = maxOperations(new int[]{3,1,3,4,3},6);
+//        try
+//        {
+//            new TestCaseRunner(new PasswordDecryptionSolution()).runAll();
+//        }
+//        catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+        System.out.print("Program ended with result: " + result);
     }
+
+
 
 //    public static int findMaxConsecutiveOnes(int[] nums) {
 //        int maxOccurences = 0;
