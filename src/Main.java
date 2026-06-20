@@ -19,9 +19,9 @@ public class Main {
         System.out.print("Program working \n");
 
 
-        int result3 = maxOperations(new int[]{2,5,4,4,1,3,4,4,1,4,4,1,2,1,2,2,3,2,4,2},3);
-        int result = maxOperations(new int[]{1,2,3,4},5);
-        int result2 = maxOperations(new int[]{3,1,3,4,3},6);
+        int result1 = maxVowels("abciiidef",3); //3
+        int result2 = maxVowels("aeiou",2); //2
+        int result3 = maxVowels("leetcode",3); //2
 //        try
 //        {
 //            new TestCaseRunner(new PasswordDecryptionSolution()).runAll();
@@ -29,7 +29,7 @@ public class Main {
 //        catch (IOException e) {
 //            throw new RuntimeException(e);
 //        }
-        System.out.print("Program ended with result: " + result);
+        System.out.print("Program ended with result: " + result1);
     }
 
 
