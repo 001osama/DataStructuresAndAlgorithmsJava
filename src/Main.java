@@ -1,7 +1,9 @@
 import HackerRankCodeRunner.Problems.ActiveTraders.ActiveTradersSolution;
+import HackerRankCodeRunner.Problems.BalancedSystemFilesPartition.BalancedSystemFilesPartitionSolution;
 import HackerRankCodeRunner.Problems.LongestSubarray.LongestSubarraySolution;
 import HackerRankCodeRunner.Problems.MaximumCostOfLaptopCount.MaximumCostOfLaptopCount;
 import HackerRankCodeRunner.Problems.NearlySimilarRectangles.NearlySimilarRectanglesSolution;
+import HackerRankCodeRunner.Problems.ParallelProcessing.ParallelProcessingSolution;
 import HackerRankCodeRunner.Problems.PasswordDecryption.PasswordDecryptionSolution;
 import HackerRankCodeRunner.Problems.RoadRepair.RoadRepairSolution;
 import HackerRankCodeRunner.Problems.StringAnagram.StringAnagramSolution;
@@ -20,19 +22,418 @@ public class Main {
     public static void main(String[] args) {
         System.out.print("Program working \n");
 
-//        var result2 = majorityElement(new int[]{3,2,3}); //3
-//        var result = majorityElement(new int[]{2,2,1,1,1,2,2}); //3
+        int[]arr1 = new int[]{1,3,5,6};
+        int[] arr2 = new int[]{1,3,5,6};
+        int[] arr3 = new int[]{1,3,5,6};
+
+//        int result6 = findMin(new int[]{3,4,5,1,2}); //3
+//        int result5 = findMin(new int[]{4,5,6,7,0,1,2}); //3
+//        int result4 = findMin(new int[]{11,13,15,17}); //3
+//        int result7 = hIndex(new int[]{0}); //3
+//        int result8 = hIndex(new int[]{1,2,100}); //3
 
 
-        try
+//        try
+//        {
+//            new TestCaseRunner(new BalancedSystemFilesPartitionSolution()).runAll();
+//        }
+//        catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+        System.out.print("Program ended with result: ");
+        System.out.print("Program ended with result: ");
+    }
+
+
+
+
+
+    public List<Integer> targetIndices(int[] nums, int target) {
+        int smallerNumbers = 0;
+        int equalNumbers = 0;
+
+        for(int num:nums)
         {
-            new TestCaseRunner(new SubarraySums()).runAll();
+            if(num < target) smallerNumbers++;
+            if(num == target) equalNumbers++;
         }
-        catch (IOException e) {
-            throw new RuntimeException(e);
+
+        List<Integer> result = new ArrayList<>();
+        while(equalNumbers-->0)
+            result.add(smallerNumbers++);
+
+        return result;
+    }
+
+
+
+
+
+
+
+    public static char nextGreatestLetter(char[] letters, char target) {
+        int start = 0;
+        int end = letters.length-1;
+        int targetValue = target - 'a';
+        char result = letters[0];
+        while(start <= end)
+        {
+            int mid = (start + end) >>> 1;
+            int charValue = letters[mid] - 'a';
+            if(charValue > targetValue)
+            {
+                result = letters[mid];
+                end = mid-1;
+            }
+            else if(charValue <= targetValue)
+                start = mid+1;
         }
-//        System.out.print("Program ended with result: " + result );
-//        System.out.print("Program ended with result: " + result2 );
+        return result;
+    }
+
+//    public static boolean isPerfectSquare(int num) {
+//        if(num<=1) return true;
+//        int start = 0;
+//        int end = num;
+//
+//        while(start <= end)
+//        {
+//            int middle = start + (end-start)/2;
+//            long squaredValue = (long)middle*middle;
+//            if(squaredValue == num) return true;
+//            else if(squaredValue < num) start = middle + 1;
+//            else end = middle-1;
+//        }
+//        return false;
+//    }
+
+
+//    public static int mySqrt(int x) {
+//        int start = 1;
+//        int end = x/2;
+//        int ans = 1;
+//        while(start < end)
+//        {
+//            int middle = start + (end-start)/2;
+//            long squared = (long) middle * middle;
+//            if(squared <= x)
+//            {
+//                start = middle + 1;
+//            }
+//            else
+//                end = middle - 1;
+//        }
+//        return start;
+//    }
+
+
+    public static int searchInsert(int[] nums, int target) {
+        int n = nums.length;
+        int start = 0;
+        int end = n-1;
+
+        while(start<=end)
+        {
+            int middle = (start+end)/2;
+            if(nums[middle] > target)
+                end = middle-1;
+            else if (nums[middle] < target)
+                start = middle+1;
+            else
+                return middle;
+        }
+        return start;
+    }
+
+
+    public static int search(int[] nums, int target) {
+        int n = nums.length;
+        int start = 0;
+        int end = n-1;
+
+        while(start<=end)
+        {
+            int middle = start+(end-start)/2;
+            if(nums[middle] > target)
+                end = middle-1;
+            else if (nums[middle] < target)
+                start = middle+1;
+            else
+                return middle;
+        }
+        return -1;
+    }
+
+
+//    //394. Decode String
+//    public String decodeString(String s) {
+//
+//    }
+
+    //75. Sort Colors
+    public static void sortColors(int[] nums) {
+        int n = nums.length;
+
+        int upperBound = 0;
+        int lowerBound = n-1;
+        int i = 0;
+        while(i <= lowerBound)
+        {
+            if(nums[i] < 1)
+            {
+                int temp = nums[upperBound];
+                nums[upperBound] = nums[i];
+                nums[i] = temp;
+                upperBound++;
+                i++;
+            }
+            else if(nums[i] > 1)
+            {
+                int temp = nums[lowerBound];
+                nums[lowerBound] = nums[i];
+                nums[i] = temp;
+                lowerBound--;
+            }
+            else
+            {
+                i++;
+            }
+        }
+    }
+
+
+
+
+    public boolean isMonotonic(int[] nums) {
+        int n = nums.length;
+
+        if(n==0) return true;
+
+        boolean isIncreasing = true;
+        boolean isDecreasing = true;
+        for(int i = 1; i < n; i++)
+        {
+            if(!isIncreasing && !isDecreasing)
+                return false;
+
+            if(nums[i] > nums[i-1]) isIncreasing = false;
+
+            if(nums[i] < nums[i-1]) isDecreasing = false;
+        }
+        return isIncreasing || isDecreasing;
+    }
+
+
+    public static String addStrings(String num1, String num2) {
+        char[] num1Array = num1.toCharArray();
+        char[] num2Array = num2.toCharArray();
+        int result = 0;
+
+        int i = num1Array.length-1;
+        int j = num2Array.length - 1;
+
+        while(i >= 0 && j >=0)
+        {
+            result*=10;
+            result += (num1Array[i] - '0') + (num2Array[j] - '0');
+            j--;
+            i--;
+        }
+
+        while(i >= 0)
+        {
+            result*=10;
+            result += (num1Array[i] - '0');
+            i--;
+        }
+
+        while(j >=0)
+        {
+            result*=10;
+            result += (num2Array[j] - '0');
+            j--;
+        }
+
+        int finalResult = 0;
+        while(result>0)
+        {
+            finalResult*=10;
+            finalResult += result%10;
+            result/=10;
+        }
+
+
+        return String.valueOf(finalResult);
+    }
+
+
+    //1299. Replace Elements with Greatest Element on Right Side
+    public static int[] replaceElements(int[] arr) {
+        int max = -1;
+        for(int i = arr.length-1; i >= 0; i--)
+        {
+            if(arr[i]>max)
+            {
+                int temp = arr[i];
+                arr[i] = max;
+                max = temp;
+            }
+            else
+                arr[i] = max;
+        }
+        return arr;
+    }
+
+    //53. Maximum Subarray
+    public static int maxSubArray(int[] nums) {
+        int currentSum = 0;
+        int maxSum = Integer.MIN_VALUE;
+        for(int number:nums)
+        {
+            if(currentSum < 0)
+                currentSum=0;
+
+            currentSum+=number;
+            maxSum = Math.max(maxSum, currentSum);
+        }
+        return maxSum;
+    }
+
+    //59. Spiral Matrix II
+    public static int[][] generateMatrix(int n) {
+        int[][] result = new int[n][n];
+
+        int top = 0;
+        int left = 0;
+        int bottom = n-1;
+        int right = n-1;
+        int currentNumber = 1;
+
+
+        while(left<=right && top <= bottom)
+        {
+            for(int i = left; i <= right; i++)
+                result[top][i] = currentNumber++;
+            top++;
+
+            for(int i = top; i <= bottom; i++)
+                result[i][right] = currentNumber++;
+            right--;
+
+            for(int i = right; i >= left;i--)
+                result[bottom][i] = currentNumber++;
+            bottom--;
+
+            for(int i = bottom; i >= top;i--)
+                result[i][left] = currentNumber++;
+            left++;
+        }
+        return result;
+    }
+
+    //54. Spiral Matrix
+    public static List<Integer> spiralOrder(int[][] matrix) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+
+        List<Integer> result = new ArrayList<>();
+
+        int top = 0;
+        int left = 0;
+        int right = n-1;
+        int bottom = m-1;
+
+        while(left <= right && top <= bottom)
+        {
+            for(int i = left; i <= right; i++)
+                result.add(matrix[top][i]);
+            top++;
+
+            for(int i = top; i <= bottom; i++)
+                result.add(matrix[i][right]);
+            right--;
+
+            if(bottom >= top)
+            {
+                for(int i = right; i >= left; i--)
+                    result.add(matrix[bottom][i]);
+                bottom--;
+            }
+
+            if(right >= left)
+            {
+                for(int i = bottom; i >= top; i--)
+                    result.add(matrix[i][left]);
+                left++;
+            }
+        }
+        return result;
+    }
+
+    //151. Reverse Words in a String
+    public static String reverseWords(String s) {
+        List<String> words = new ArrayList<String>();
+
+        for(int i = 0; i < s.length(); i++)
+        {
+            StringBuilder sb = new StringBuilder();
+            while(i < s.length() &&
+                    (Character.isAlphabetic(s.charAt(i))  ||  Character.isDigit(s.charAt(i))))
+                sb.append(s.charAt(i++));
+
+            if(!sb.isEmpty())
+                words.add(sb.toString());
+        }
+
+        StringBuilder result = new StringBuilder();
+        for(int i = words.size()-1; i >= 0; i--)
+        {
+            result.append(words.get(i));
+
+            if(i!=0)
+                result.append(" ");
+        }
+
+        return result.toString();
+    }
+
+
+
+    public static boolean isToeplitzMatrix(int[][] matrix) {
+        for(int i = 1; i < matrix.length; i++)
+        {
+            for(int j = 1; j < matrix[i].length; j++)
+            {
+                if(matrix[i][j] != matrix[i-1][j-1])
+                    return false;
+            }
+        }
+        return true;
+    }
+
+    //75. Sort Colors
+
+
+    //128. Longest Consecutive Sequence
+    public static int longestConsecutive(int[] nums) {
+        Set<Integer> seen = new HashSet<>();
+        int maxLength = 0;
+
+        for (int num : nums) seen.add(num);
+
+        for(int num:seen)
+        {
+            int length = 0;
+            if(!seen.contains(num-1))
+            {
+                length++;
+                while(seen.contains(num+length))
+                    length++;
+
+                maxLength = Math.max(maxLength, length);
+            }
+        }
+        return maxLength;
     }
 
 //    169. Majority Element
@@ -92,55 +493,6 @@ public class Main {
         return nums;
     }
 
-
-    //394. Decode String
-    public static String decodeString(String s) {
-        int i = -1;
-        Deque<String> repoStack = new ArrayDeque<>();
-        Deque<Integer> numberStack = new ArrayDeque<>();
-        while(++i < s.length())
-        {
-            if(s.charAt(i) >= '0' &&  s.charAt(i) <= '9')
-            {
-                int tempMultiplier = 0;
-                while(s.charAt(i) >= '0' &&  s.charAt(i) <= '9'){
-                    tempMultiplier *= 10;
-                    tempMultiplier += s.charAt(i) - '0';
-                    i++;
-                }
-                numberStack.push(tempMultiplier);
-                i--;
-                continue;
-            }
-
-            if(s.charAt(i) == ']')
-            {
-                StringBuilder sb = new StringBuilder();
-                while(!repoStack.isEmpty() && !Objects.equals(repoStack.peek(), "["))
-                    sb.insert(0,repoStack.pop());
-
-                if(!repoStack.isEmpty() && Objects.equals(repoStack.peek(), "["))
-                    repoStack.pop();
-
-                int multiplier = numberStack.pop();
-
-                String currentString = sb.toString();
-                while(multiplier-- > 1)
-                    sb.insert(0,currentString);
-
-                repoStack.push(sb.toString());
-            }
-            else
-                repoStack.push(String.valueOf(s.charAt(i)));
-        }
-        StringBuilder result = new StringBuilder();
-
-        while(!repoStack.isEmpty())
-            result.insert(0,repoStack.pop());
-
-
-        return result.toString();
-    }
 
     public static int[] asteroidCollision(int[] asteroids) {
         Deque<Integer> seenStack = new ArrayDeque<>();
@@ -348,22 +700,22 @@ public class Main {
     }
 
     //704. Binary Search
-    public static int search(int[] nums, int target) {
-        int left = 0;
-        int right = nums.length - 1;
-
-        while(left<=right)
-        {
-            int middle = (right+left)/2;
-            if(nums[middle] == target)
-                return middle;
-            else if (nums[middle] > target)
-                right = middle - 1;
-            else
-                left = middle + 1;
-        }
-        return -1;
-    }
+//    public static int search(int[] nums, int target) {
+//        int left = 0;
+//        int right = nums.length - 1;
+//
+//        while(left<=right)
+//        {
+//            int middle = (right+left)/2;
+//            if(nums[middle] == target)
+//                return middle;
+//            else if (nums[middle] > target)
+//                right = middle - 1;
+//            else
+//                left = middle + 1;
+//        }
+//        return -1;
+//    }
 
 
 

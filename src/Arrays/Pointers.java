@@ -100,4 +100,21 @@ public class Pointers {
         }
 
     }
+
+    //2210. Count Hills and Valleys in an Array
+    public static int countHillValley(int[] nums) {
+        int result = 0;
+
+        int j = 0;
+        for(int i = 1; i < nums.length-1; i++)
+        {
+            if((nums[j] < nums[i] && nums[i] > nums[i+1]) ||
+                    (nums[j] > nums[i] && nums[i] < nums[i+1]))
+            {
+                j=i;
+                result++;
+            }
+        }
+        return result;
+    }
 }

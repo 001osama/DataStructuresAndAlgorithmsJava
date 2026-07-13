@@ -28,14 +28,23 @@ public class ParallelProcessingSolution extends HackerRankSolution {
     }
 
     private long minTime(long[] files, long numCores, long limit) {
-        // TODO: implement
-        // A file executed alone       → takes files[i] time
-        // A file executed in parallel → takes ceil(files[i] / numCores) time
-        //                               but only ONE file at a time can use all cores
-        //                               (limited by `limit` parallel slots,
-        //                               though only one gets the core division benefit)
-        // Goal: minimum total sequential time across all files
-        return 0;
+        Arrays.sort(files);
+
+        long totalTime = 0;
+        for(int i = files.length-1; i >= 0; i--)
+        {
+            if(files[i] % numCores == 0 && limit > 0)
+            {
+                totalTime += files[i]/numCores;
+                totalTime += files[i] % numCores;
+                limit--;
+            }
+            else
+                totalTime += files[i];
+
+        }
+
+        return totalTime;
     }
 
 
