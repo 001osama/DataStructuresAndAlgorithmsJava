@@ -2,6 +2,28 @@ package Arrays.BinarySearchPatterns;
 
 public class SearchOn2DMatrix {
 
+    //240. Search a 2D Matrix II
+    public static boolean searchMatrixII(int[][] matrix, int target) {
+        int rowLength = matrix.length;
+        int colLength = matrix[0].length;
+
+
+        int rowIndex = 0;
+        int colIndex = colLength-1;
+
+        while(rowIndex < rowLength && colIndex>=0)
+        {
+            if(matrix[rowIndex][colIndex] == target)
+                return true;
+            else if (matrix[rowIndex][0]<=target && matrix[rowIndex][colIndex] > target)
+                colIndex--;
+            else
+                rowIndex++;
+        }
+        return false;
+    }
+
+
     //74. Search a 2D Matrix
     public static boolean searchMatrix(int[][] matrix, int target) {
         int row = searchRow(matrix, target);
