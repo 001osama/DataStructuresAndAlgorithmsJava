@@ -2,6 +2,46 @@ package Arrays.BinarySearchPatterns;
 
 public class SearchOn2DMatrix {
 
+    //378. Kth Smallest Element in a Sorted Matrix
+    public static int kthSmallest(int[][] matrix, int k) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+
+        int start = matrix[0][0];
+        int end = matrix[m-1][n-1];
+
+        while(start<=end)
+        {
+            int proposedTarget = start+(end-start)/2;
+            if(isKthSmallest(matrix, k, proposedTarget))
+                start = proposedTarget+1;
+            else
+                end = proposedTarget-1;
+        }
+        return end;
+    }
+
+    private static boolean isKthSmallest(int[][] matrix, int k, int target)
+    {
+        int totalCount = 0;
+        for(int[] row: matrix)
+        {
+            int start = 0;
+            int end = row.length-1;
+
+            while(start<=end)
+            {
+                int mid = start+end>>>1;
+                if(row[mid] >= target)
+                    end = mid-1;
+                else
+                    start = mid+1;
+            }
+            totalCount+=start;
+        }
+        return totalCount < k;
+    }
+
     //240. Search a 2D Matrix II
     public static boolean searchMatrixII(int[][] matrix, int target) {
         int rowLength = matrix.length;
